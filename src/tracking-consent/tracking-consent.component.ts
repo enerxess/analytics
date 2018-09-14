@@ -1,0 +1,52 @@
+import {
+  Component,
+  Inject,
+  OnInit,
+  PLATFORM_ID,
+  Renderer2,
+  ViewEncapsulation
+} from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import {
+  MAT_RIPPLE_GLOBAL_OPTIONS,
+  RippleGlobalOptions
+} from '@angular/material';
+
+import { ConfigService } from '../lib/config.service';
+
+const globalRippleConfig: RippleGlobalOptions = { disabled: true };
+
+@Component({
+  selector: 'exs-tracking-consent',
+  templateUrl: './tracking-consent.component.html',
+  styleUrls: ['./tracking-consent.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  providers: [
+    { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }
+  ]
+})
+export class TrackingConsentComponent implements OnInit {
+  constructor(
+    @Inject(PLATFORM_ID) private _platformId: Object,
+    @Inject(DOCUMENT) private _document: any,
+    private _renderer: Renderer2,
+    private _configService: ConfigService
+  ) {}
+
+  ngOnInit(): void {
+    this.appendFont();
+  }
+
+  appendFont(): void {
+    if (isPlatformBrowser(this._platformId)) {
+      const roboto = this._renderer.createElement('link');
+      roboto.href = 'https://fonts.googleapis.com/css?family=Roboto:400,500';
+      roboto.rel = 'stylesheet';
+      this._renderer.appendChild(this._document.head, roboto);
+    }
+  }
+
+  changeConsentState(consent: boolean): void {
+    this._configService.handleConsentChange(consent);
+  }
+}

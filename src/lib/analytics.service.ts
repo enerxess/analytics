@@ -1,0 +1,64 @@
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { Observable } from 'rxjs';
+
+import { ConfigService } from './config.service';
+import { TrackingConsentComponent } from '../tracking-consent/tracking-consent.component';
+
+export class AnalyticsConfig {
+  analyticsProviders: Array<string> = [];
+  enableTracking = true;
+  privacyStrategy = 'optIn';
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AnalyticsService {
+  private _trackingConsentOverlayActionObserver$: Observable<boolean>;
+  private _trackingConsentOverlayPortal: ComponentPortal<
+    TrackingConsentComponent
+  >;
+  private _trackingConsentOverlayRef: OverlayRef;
+
+  constructor(
+    @Inject(PLATFORM_ID) private _platformId: Object,
+    private _analyticsConfig: AnalyticsConfig,
+    private _overlay: Overlay,
+    private _configService: ConfigService
+  ) {
+    this._trackingConsentOverlayActionObserver$ = this._configService.trackingConsentOverlayActionObserver$;
+    this.prepareTrackingConsentOverlay();
+  }
+
+  private prepareTrackingConsentOverlay(): void {
+    if (isPlatformBrowser(this._platformId)) {
+      if (!localStorage.getItem('tracking_consent')) {
+        this.showTrackingConsentOverlay();
+      }
+    }
+  }
+
+  private showTrackingConsentOverlay(): void {
+    this._trackingConsentOverlayRef = this._overlay.create({
+      positionStrategy: this._overlay
+        .position()
+        .global()
+        .bottom('32px')
+        .left('32px'),
+      maxWidth: 600,
+      hasBackdrop: this._analyticsConfig.privacyStrategy === 'optIn'
+    });
+
+    this._trackingConsentOverlayPortal = new ComponentPortal(
+      TrackingConsentComponent
+    );
+    this._trackingConsentOverlayRef.attach(this._trackingConsentOverlayPortal);
+
+    this._trackingConsentOverlayActionObserver$.subscribe(() =>
+      this._trackingConsentOverlayRef.dispose()
+    );
+  }
+}
