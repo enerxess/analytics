@@ -52,7 +52,14 @@ export class AnalyticsService {
   }
 
   initializeAnalytics(config: Partial<AnalyticsConfig>) {
-    this._analyticsConfig = config;
+    this._analyticsConfig = {
+      acceptLabel: 'Akzeptieren',
+      analyticsProviders: [],
+      consentDescription: '<strong>Happyness</strong>',
+      privacyStrategy: 'optIn',
+      rejectLabel: 'Tracking nicht erlauben',
+      ...config
+    };
     this._configService.enableTracking(
       this._analyticsConfig.privacyStrategy === 'optOut'
     );
