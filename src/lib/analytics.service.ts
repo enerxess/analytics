@@ -8,14 +8,11 @@ import { ConfigService } from './config.service';
 import { TrackingConsentComponent } from '../tracking-consent/tracking-consent.component';
 
 export class AnalyticsConfig {
-  acceptLabel = 'Akzeptieren';
-  analyticsProviders: Array<string> = [];
-  consentDescription = `Mit Besuch und Nutzung der Seite akzeptiere ich die <a href="#">
-  <span class="mat-body-2">Datenschutzerklärung</span></a> und willige in die Verarbeitung
-  meiner personenbezogenen Daten im Rahmen der Nutzung dieser Website sowie zum Setzen der
-  erforderlichen Cookies ein.`;
-  privacyStrategy = 'optIn';
-  rejectLabel = 'Tracking nicht erlauben';
+  acceptLabel: string;
+  analyticsProviders: Array<string>;
+  consentDescription: string;
+  privacyStrategy: string;
+  rejectLabel: string;
 }
 
 @Injectable({
@@ -55,7 +52,10 @@ export class AnalyticsService {
     this._analyticsConfig = {
       acceptLabel: 'Akzeptieren',
       analyticsProviders: [],
-      consentDescription: '<strong>Happyness</strong>',
+      consentDescription: `Mit Besuch und Nutzung der Seite akzeptiere ich die <a href="#">
+      <span class="mat-body-2">Datenschutzerklärung</span></a> und willige in die Verarbeitung
+      meiner personenbezogenen Daten im Rahmen der Nutzung dieser Website sowie zum Setzen der
+      erforderlichen Cookies ein.`,
       privacyStrategy: 'optIn',
       rejectLabel: 'Tracking nicht erlauben',
       ...config
