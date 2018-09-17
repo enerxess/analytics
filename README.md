@@ -12,7 +12,8 @@ Bei einer statischen Konfiguration kann das Modul mit
 
 importiert werden und anschließend im @NgModule({ imports: []}-Array mit
 
-```AnalyticsModule.withConfig({
+```
+AnalyticsModule.withConfig({
       acceptLabel: 'Akzeptieren',
       analyticsProviders: [],
       consentDescription: '<strong>Happyness</strong>',
@@ -31,7 +32,8 @@ Ist die Konfiguration nicht bei App-Start bekannt, kann das Modul auch mit
 
 eingerichtet werden. Dann lässt sich später in einer Komponente über den bereitgestellten AnalyticsService
 
-```import { AnalyticsService } from '@enerxess/analytics';
+```
+import { AnalyticsService } from '@enerxess/analytics';
 ...
 constructor(private _analyticsService: AnalyticsService) {
   this._analyticsService.initializeAnalytics(...config...);
