@@ -14,6 +14,10 @@ import { TrackingConsentComponent } from '../tracking-consent/tracking-consent.c
 export class AnalyticsModule {
   constructor(private _analyticsService: AnalyticsService) {}
 
+  static initialize(): ModuleWithProviders<AnalyticsModule> {
+    return { ngModule: AnalyticsModule };
+  }
+
   static withConfig(
     config: Partial<AnalyticsConfig>
   ): ModuleWithProviders<AnalyticsModule> {
@@ -26,9 +30,5 @@ export class AnalyticsModule {
         }
       ]
     };
-  }
-
-  static initialize(): ModuleWithProviders<AnalyticsModule> {
-    return { ngModule: AnalyticsModule };
   }
 }

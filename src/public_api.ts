@@ -2,5 +2,5 @@
  * Public API Surface of analytics
  */
 
-export * from './lib/analytics.service';
-export * from './lib/analytics.module';
+export { AnalyticsService } from './lib/analytics.service';
+export { AnalyticsModule } from './lib/analytics.module';
