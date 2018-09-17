@@ -11,8 +11,10 @@ import {
   MAT_RIPPLE_GLOBAL_OPTIONS,
   RippleGlobalOptions
 } from '@angular/material';
+import { Observable } from 'rxjs';
 
 import { ConfigService } from '../lib/config.service';
+import { AnalyticsConfig } from '../lib/analytics.service';
 
 const globalRippleConfig: RippleGlobalOptions = { disabled: true };
 
@@ -26,18 +28,22 @@ const globalRippleConfig: RippleGlobalOptions = { disabled: true };
   ]
 })
 export class TrackingConsentComponent implements OnInit {
+  analyticsConfig$: Observable<Partial<AnalyticsConfig>>;
+
   constructor(
     @Inject(PLATFORM_ID) private _platformId: Object,
     @Inject(DOCUMENT) private _document: any,
     private _renderer: Renderer2,
     private _configService: ConfigService
-  ) {}
+  ) {
+    this.analyticsConfig$ = this._configService.analyticsConfig$;
+  }
 
   ngOnInit(): void {
     this.appendFont();
   }
 
-  appendFont(): void {
+  private appendFont(): void {
     if (isPlatformBrowser(this._platformId)) {
       const roboto = this._renderer.createElement('link');
       roboto.href = 'https://fonts.googleapis.com/css?family=Roboto:400,500';

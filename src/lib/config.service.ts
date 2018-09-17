@@ -1,15 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Angulartics2 } from 'angulartics2';
+import { AnalyticsConfig } from './analytics.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigService {
+  private _analyticsConfig$: BehaviorSubject<Partial<AnalyticsConfig>>;
   private _trackingConsentOverlayActionObserver$: Subject<boolean>;
 
   constructor(private _angulartics2: Angulartics2) {
+    this._analyticsConfig$ = new BehaviorSubject<Partial<AnalyticsConfig>>({});
     this._trackingConsentOverlayActionObserver$ = new Subject<boolean>();
+  }
+
+  get analyticsConfig$(): Observable<Partial<AnalyticsConfig>> {
+    return this._analyticsConfig$.asObservable();
   }
 
   get trackingConsentOverlayActionObserver$(): Observable<boolean> {
@@ -26,5 +33,9 @@ export class ConfigService {
 
   enableTracking(state: boolean): void {
     this._angulartics2.settings.developerMode = !state;
+  }
+
+  setAnalyticsConfig(config: Partial<AnalyticsConfig>): void {
+    this._analyticsConfig$.next(config);
   }
 }
