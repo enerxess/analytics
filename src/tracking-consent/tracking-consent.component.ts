@@ -14,7 +14,7 @@ import { AnalyticsConfig } from '../lib/analytics.service';
     trigger('fadeIn', [
       transition(':enter', [
         style({ opacity: 0 }),
-        animate('0.2s 2s ease-out', style({ opacity: 1 }))
+        animate('0.2s 1s ease-out', style({ opacity: 1 }))
       ])
     ])
   ]
