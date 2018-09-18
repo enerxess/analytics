@@ -9,7 +9,6 @@ import { TrackingConsentComponent } from '../tracking-consent/tracking-consent.c
 
 export class AnalyticsConfig {
   acceptLabel: string;
-  analyticsProviders: Array<string>;
   consentDescription: string;
   privacyStrategy: string;
   rejectLabel: string;
@@ -51,12 +50,11 @@ export class AnalyticsService {
   initializeAnalytics(config: Partial<AnalyticsConfig>) {
     this._analyticsConfig = {
       acceptLabel: 'Akzeptieren',
-      analyticsProviders: [],
       consentDescription: `Mit Besuch und Nutzung der Seite akzeptiere ich die <a href="#">
       <span class="mat-body-2">Datenschutzerklärung</span></a> und willige in die Verarbeitung
       meiner personenbezogenen Daten im Rahmen der Nutzung dieser Website sowie zum Setzen der
       erforderlichen Cookies ein.`,
-      privacyStrategy: 'optIn',
+      privacyStrategy: 'optOut',
       rejectLabel: 'Tracking nicht erlauben',
       ...config
     };

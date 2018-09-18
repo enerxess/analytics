@@ -15,9 +15,8 @@ importiert werden und anschließend im @NgModule({ imports: []}-Array mit
 ```
 AnalyticsModule.withConfig({
       acceptLabel: 'Akzeptieren',
-      analyticsProviders: [],
       consentDescription: '<strong>Happyness</strong>',
-      privacyStrategy: 'optIn',
+      privacyStrategy: 'optOut',
       rejectLabel: 'Tracking nicht erlauben'
     })
 ```
