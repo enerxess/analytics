@@ -1,11 +1,10 @@
 {
   "name": "@enerxess/analytics",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "peerDependencies": {
     "@angular/cdk": "^6.0.0",
     "@angular/common": "^6.0.0",
     "@angular/core": "^6.0.0",
-    "@angular/material": "^6.0.0",
     "angulartics2": "^6.0.0",
     "rxjs": "^6.0.0"
   }

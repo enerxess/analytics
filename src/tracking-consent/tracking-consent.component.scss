@@ -1,15 +1,14 @@
 @import '~@angular/cdk/overlay-prebuilt.css';
-@import '~@angular/material/theming';
 
 .cdk-overlay-container {
   z-index: 9999;
 }
 
 .exs-tracking-consent {
-  @include mat-elevation(16);
-
   background-color: #fff;
   border-radius: 4px;
+  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2),
+    0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
   color: #333;
   display: flex;
   flex-direction: column;
