@@ -33,6 +33,10 @@
     text-transform: uppercase;
   }
 
+  a.btn-link:not(:hover) {
+    color: inherit;
+  }
+
   a:first-child {
     margin-right: 8px;
   }
