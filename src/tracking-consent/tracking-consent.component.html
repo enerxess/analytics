@@ -2,6 +2,7 @@
   <p class="mat-body-1" [innerHTML]="config.consentDescription"></p>
   <div class="exs-tracking-consent-actions">
     <button mat-stroked-button type="button" (click)="changeConsentState(false)">{{ config.rejectLabel }}</button>
-    <button mat-flat-button color="primary" type="button" (click)="changeConsentState(true)">{{ config.acceptLabel }}</button>
+    <button mat-flat-button color="primary" type="button" (click)="changeConsentState(true)">{{
+      config.acceptLabel }}</button>
   </div>
 </div>
