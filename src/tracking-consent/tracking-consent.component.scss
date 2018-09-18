@@ -1,17 +1,6 @@
 @import '~@angular/cdk/overlay-prebuilt.css';
 @import '~@angular/material/theming';
 
-$tracking-consent-theme: mat-light-theme(
-  mat-palette($mat-indigo),
-  mat-palette($mat-pink)
-);
-$primary: map-get($tracking-consent-theme, primary);
-
-@include mat-button-theme($tracking-consent-theme);
-
-@include mat-base-typography(mat-typography-config());
-@include mat-button-typography(mat-typography-config());
-
 .cdk-overlay-container {
   z-index: 9999;
 }
@@ -30,21 +19,22 @@ $primary: map-get($tracking-consent-theme, primary);
   width: 100%;
 
   a {
-    color: mat-color($primary) !important;
     text-decoration: none;
   }
 }
 
 .exs-tracking-consent-actions {
+  align-items: center;
   display: flex;
   justify-content: flex-end;
   margin-top: 8px;
 
-  button {
+  a {
+    margin-bottom: 0 !important;
     text-transform: uppercase;
   }
 
-  button:first-child {
+  a:first-child {
     margin-right: 8px;
   }
 }

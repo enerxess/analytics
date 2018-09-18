@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';
 
 import { ConfigService } from '../lib/config.service';
 import { AnalyticsConfig } from '../lib/analytics.service';
+import { fadeInAnimation } from '../lib/animations';
 
 const globalRippleConfig: RippleGlobalOptions = { disabled: true };
 
@@ -25,7 +26,8 @@ const globalRippleConfig: RippleGlobalOptions = { disabled: true };
   encapsulation: ViewEncapsulation.None,
   providers: [
     { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }
-  ]
+  ],
+  animations: [fadeInAnimation]
 })
 export class TrackingConsentComponent implements OnInit {
   analyticsConfig$: Observable<Partial<AnalyticsConfig>>;
