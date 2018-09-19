@@ -4,10 +4,6 @@
   z-index: 9999;
 }
 
-::ng-deep exs-tracking-consent {
-  max-width: 100%;
-}
-
 .exs-tracking-consent {
   background-color: #fff;
   border-radius: 4px;
@@ -17,9 +13,9 @@
   display: flex;
   flex-direction: column;
   font-display: swap;
-  max-width: 600px;
+  max-width: 100vw;
   padding: 16px;
-  width: 100%;
+  width: 600px;
 
   a {
     text-decoration: none;
