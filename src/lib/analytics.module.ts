@@ -1,12 +1,13 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LayoutModule } from '@angular/cdk/layout';
 import { OverlayModule } from '@angular/cdk/overlay';
 
 import { AnalyticsConfig, AnalyticsService } from './analytics.service';
 import { TrackingConsentComponent } from '../tracking-consent/tracking-consent.component';
 
 @NgModule({
-  imports: [CommonModule, OverlayModule],
+  imports: [CommonModule, LayoutModule, OverlayModule],
   declarations: [TrackingConsentComponent],
   entryComponents: [TrackingConsentComponent]
 })

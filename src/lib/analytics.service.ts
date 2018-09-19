@@ -1,5 +1,6 @@
 import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { Observable } from 'rxjs';
@@ -29,7 +30,8 @@ export class AnalyticsService {
     @Inject(PLATFORM_ID) private _platformId: Object,
     @Optional() private _config: AnalyticsConfig,
     private _overlay: Overlay,
-    private _configService: ConfigService
+    private _configService: ConfigService,
+    private breakpointObserver: BreakpointObserver
   ) {
     this._trackingConsentOverlayActionObserver$ = this._configService.trackingConsentOverlayActionObserver$;
     if (this._config) {
@@ -65,12 +67,19 @@ export class AnalyticsService {
   }
 
   private showTrackingConsentOverlay(): void {
+    const isMobile = this.breakpointObserver.isMatched('(max-width: 599px)');
     this._trackingConsentOverlayRef = this._overlay.create({
-      positionStrategy: this._overlay
-        .position()
-        .global()
-        .bottom('32px')
-        .left('32px'),
+      positionStrategy: isMobile
+        ? this._overlay
+            .position()
+            .global()
+            .bottom('0')
+            .centerHorizontally()
+        : this._overlay
+            .position()
+            .global()
+            .bottom('32px')
+            .left('32px'),
       maxWidth: 600,
       hasBackdrop: this._analyticsConfig.privacyStrategy === 'optIn'
     });
