@@ -4,6 +4,10 @@
   z-index: 9999;
 }
 
+::ng-deep exs-tracking-consent {
+  max-width: 100%;
+}
+
 .exs-tracking-consent {
   background-color: #fff;
   border-radius: 4px;

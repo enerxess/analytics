@@ -80,7 +80,7 @@ export class AnalyticsService {
             .global()
             .bottom('32px')
             .left('32px'),
-      maxWidth: 600,
+      maxWidth: '100%',
       hasBackdrop: this._analyticsConfig.privacyStrategy === 'optIn'
     });
 
