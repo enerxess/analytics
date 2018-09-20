@@ -28,7 +28,6 @@
   justify-content: flex-end;
   margin-top: 8px;
 
-  /*
   a {
     margin-bottom: 0 !important;
   }
@@ -36,9 +35,8 @@
   a.btn-link:not(:hover) {
     color: inherit;
   }
-  */
 
-  button:first-child {
+  a:first-child {
     margin-right: 8px;
   }
 }

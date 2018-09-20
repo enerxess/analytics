@@ -1,8 +1,8 @@
 <div *ngIf="analyticsConfig$ | async as config" [@fadeIn] class="exs-tracking-consent">
   <p [innerHTML]="config.consentDescription"></p>
   <div class="exs-tracking-consent-actions">
-    <button type="button" class="btn btn-link" (click)="changeConsentState(false)">{{ config.rejectLabel }}</button>
-    <button type="button" class="btn btn-primary" (click)="changeConsentState(true)">{{
-      config.acceptLabel }}</button>
+    <a href="javascript:" class="btn btn-link" (click)="changeConsentState(false)">{{ config.rejectLabel }}</a>
+    <a href="javascript:" class="btn btn-primary" (click)="changeConsentState(true)">{{
+      config.acceptLabel }}</a>
   </div>
 </div>
